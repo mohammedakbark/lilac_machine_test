@@ -17,7 +17,20 @@ final class ChatPorfileControllerErrorState extends ChatProfileControllerState {
 
 final class ChatPorfileControllerSuccessState
     extends ChatProfileControllerState {
+  final bool searching;
+  final List<ChatProfileModel> searchList;
+
   final List<ChatProfileModel> lsitOfProfiles;
 
-  ChatPorfileControllerSuccessState({required this.lsitOfProfiles});
+  ChatPorfileControllerSuccessState({
+    this.searching = false,
+    this.searchList = const [],
+    required this.lsitOfProfiles,
+  });
+
+  ChatPorfileControllerSuccessState copyWith({bool? searching,
+   List<ChatProfileModel>? searchList,
+   List<ChatProfileModel>? lsitOfProfiles}){
+    return ChatPorfileControllerSuccessState(lsitOfProfiles:lsitOfProfiles??this.lsitOfProfiles,searching: searching??this.searching,searchList:searchList??this.searchList);
+  }
 }

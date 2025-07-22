@@ -26,4 +26,24 @@ class ChatProfileControllerCubit extends Cubit<ChatProfileControllerState> {
       emit(ChatPorfileControllerSuccessState(lsitOfProfiles: listOfProfiles));
     }
   }
+
+  Future<void> onSearch(String query) async {
+    final crtState = state;
+    if (crtState is ChatPorfileControllerSuccessState) {
+      if (query.isEmpty) {
+        emit(crtState.copyWith(searchList: []));
+        return;
+      }
+      emit(
+        crtState.copyWith(
+          searchList: crtState.lsitOfProfiles
+              .where(
+                (element) =>
+                    element.name.toLowerCase().contains(query.toLowerCase()),
+              )
+              .toList(),
+        ),
+      );
+    }
+  }
 }
