@@ -84,12 +84,12 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                           RoutePaths.chatScreen,
                                           extra: {
                                             "senderId": myId.id,
-                                            'name': profile.attributes.name,
+                                            'name': profile.name,
                                             "isOnline":
-                                                profile.attributes.isOnline,
+                                                profile.isOnline,
                                             "receiverId": profile.id,
                                             "profile": profile
-                                                .attributes
+                                                
                                                 .profilePhotoUrl,
                                           },
                                         );
@@ -105,11 +105,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                       ),
                                       child: CustomeNetworkImg(
                                         imageURL:
-                                            profile.attributes.profilePhotoUrl,
+                                            profile.profilePhotoUrl,
                                       ),
                                     ),
                                     title: Text(
-                                      profile.attributes.name,
+                                      profile.name,
                                       style: AppStyle.mediumStyle(
                                         fontWeight: FontWeight.w700,
                                       ),
