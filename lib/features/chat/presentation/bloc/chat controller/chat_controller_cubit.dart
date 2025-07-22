@@ -24,13 +24,15 @@ class ChatControllerCubit extends Cubit<ChatControllerState> {
         ),
       );
     } else {
-      final data = response.data as Map<String, dynamic>;
+      final data = response.data as Map;
+      log(data.toString());
+      final list = data['data'] as List;
 
       emit(
         ChatControllerSuccessState(
-          chats: data['data'].isEmpty
-              ? ChatModel(messages: [])
-              : ChatModel.fromJson(response.data as Map<String, dynamic>),
+          chats: list.isEmpty
+              ? []
+              : list.map((e) => MessageModel.fromJson(e)).toList(),
         ),
       );
     }

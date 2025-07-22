@@ -12,7 +12,7 @@ class MessageBubble extends StatelessWidget {
     required this.message,
     required this.senderId,
   });
-  bool get isMe => int.parse(senderId) == message.attributes.senderId;
+  bool get isMe => int.parse(senderId) == message.senderId;
   @override
   Widget build(BuildContext context) {
     Color bubbeleColor = isMe ? AppColors.PRIMARY : AppColors.GREYSHADE;
@@ -37,12 +37,12 @@ class MessageBubble extends StatelessWidget {
                 color: bubbeleColor,
               ),
               child: Text(
-                message.attributes.message,
+                message.message,
                 style: AppStyle.normalStyle(color: AppColors.WHITE),
               ),
             ),
             Text(
-              IntlC.convertToTime(message.attributes.sentAt),
+              IntlC.convertToTime(message.sentAt),
               style: AppStyle.smallStyle(fontSize: 10),
             ),
           ],

@@ -40,21 +40,21 @@ class AuthControllerBloc extends Cubit<AuthControllerState> {
         currentState.mobileNumber!,
         int.parse(otp),
       );
-      log(response.data.toString());
 
       if (response.isError) {
         _emitError(response.message ?? response.data.toString());
       } else {
+        // final data = response.data as Map<String, dynamic>;
+        // showToast("Login Success");
+        //         log(data.toString());
+
+        log(response.data.toString());
+        log("-------------------------------------");
         final data = response.data as Map<String, dynamic>;
-        showToast("Login Success");
-        final model = CustomerDetailModel.fromJson(
-          data['data'] as Map<String, dynamic>,
+        final model = CustomerDetailsModel.fromJson(
+          data
         );
-        await _setUserData(
-          model.attributes.name,
-          model.attributes.authStatus.accessToken,
-          model.id,
-        );
+        await _setUserData(model.name, model.authStatus.accessToken, model.id);
         emit(
           currentState.copyWith(
             loginSuccess: true,

@@ -19,7 +19,7 @@ class AuthControllerErrorState extends AuthControllerState {
 class AuthControllerSuccessState extends AuthControllerState {
   final bool isLoadingVerify;
   final bool loginSuccess;
-  final CustomerDetailModel? custmerModel;
+  final CustomerDetailsModel? custmerModel;
   AuthControllerSuccessState({
     this.custmerModel,
     required super.mobileNumber,
@@ -31,7 +31,7 @@ class AuthControllerSuccessState extends AuthControllerState {
     String? mobileNumber,
     bool? isLoadingVerify,
     bool? loginSuccess,
-    CustomerDetailModel? custmerModel,
+    CustomerDetailsModel? custmerModel,
   }) {
     return AuthControllerSuccessState(
       custmerModel: custmerModel??this.custmerModel,

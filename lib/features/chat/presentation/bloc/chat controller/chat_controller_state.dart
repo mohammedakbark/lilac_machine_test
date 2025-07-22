@@ -14,7 +14,7 @@ final class ChatControllerErrorState extends ChatControllerState {
 }
 
 final class ChatControllerSuccessState extends ChatControllerState {
-  final ChatModel chats;
+  final List<MessageModel> chats;
 
   ChatControllerSuccessState({required this.chats});
 }

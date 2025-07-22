@@ -30,7 +30,43 @@ class _ChatListScreenState extends State<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Messages")),
+      appBar: AppBar(
+        title: Text("Messages"),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Logout ?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: AppStyle.mediumStyle(color: AppColors.BLACK),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await AuthControllerBloc().deletePref();
+                        context.go(RoutePaths.splash);
+                      },
+                      child: Text(
+                        "Logout",
+                        style: AppStyle.mediumStyle(color: AppColors.PRIMARY),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: AppMargin(
         child: Center(
           child:
@@ -85,12 +121,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                           extra: {
                                             "senderId": myId.id,
                                             'name': profile.name,
-                                            "isOnline":
-                                                profile.isOnline,
+                                            "isOnline": profile.isOnline,
                                             "receiverId": profile.id,
-                                            "profile": profile
-                                                
-                                                .profilePhotoUrl,
+                                            "profile": profile.profilePhotoUrl,
                                           },
                                         );
                                       }
@@ -104,8 +137,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: CustomeNetworkImg(
-                                        imageURL:
-                                            profile.profilePhotoUrl,
+                                        imageURL: profile.profilePhotoUrl,
                                       ),
                                     ),
                                     title: Text(

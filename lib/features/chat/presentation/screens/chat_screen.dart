@@ -107,7 +107,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   }
                 case ChatControllerSuccessState():
                   {
-                    final chats = state.chats.messages;
+                    final chats = state.chats;
                     return chats.isEmpty
                         ? Text("No messages")
                         : ListView.builder(
