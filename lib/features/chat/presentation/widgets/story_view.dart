@@ -1,18 +1,39 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lilac_machine_test/core/constants/img_const.dart';
 import 'package:lilac_machine_test/core/theme/app_styles.dart';
 
 class StoryView extends StatelessWidget {
   StoryView({super.key});
-  List<String> list = [
-    "Crisatina",
-    "Patricia",
-    "Celestine",
-    "Elzebet",
-    "Crisatina",
-    "Patricia",
-    "Celestine",
-    "Elzebet",
+  List<Map<String, dynamic>> list = [
+    {
+      "name": "Elzebet",
+      "image": "https://xsgames.co/randomusers/assets/avatars/male/46.jpg",
+    },
+    {
+      "name": "Crisatina",
+      "image": "https://xsgames.co/randomusers/assets/avatars/male/63.jpg",
+    },
+    {
+      "name": "Elzebet",
+      "image": "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+    },
+    {
+      "name": "Crisatina",
+      "image": "https://randomuser.me/api/portraits/women/12.jpg",
+    },
+    {
+      "name": "Elzebet",
+      "image": "https://randomuser.me/api/portraits/women/12.jpg",
+    },
+    {
+      "name": "Elzebet",
+      "image": "https://xsgames.co/randomusers/assets/avatars/male/46.jpg",
+    },
+    {
+      "name": "Patricia",
+      "image": "https://xsgames.co/randomusers/assets/avatars/male/63.jpg",
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,10 +56,16 @@ class StoryView extends StatelessWidget {
                     width: 50,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      image: DecorationImage(image: AssetImage(ImgConst.logo)),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          list[index]['image'],
+                          errorListener: (p0) {},
+                        ),
+                      ),
                     ),
                   ),
-                  Text(list[index], style: AppStyle.normalStyle()),
+                  Text(list[index]['name'], style: AppStyle.normalStyle()),
                 ],
               ),
             ),
